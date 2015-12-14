@@ -26,7 +26,7 @@
             android:layout_width="0px"
             android:layout_height="0px"/>
 
-        <EditText
+        <com.mohitmamoria.edittextkeyboardissue.CustomEditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/notification_reply_box"
