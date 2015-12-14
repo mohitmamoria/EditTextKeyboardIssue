@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.graphics.PixelFormat;
 import android.os.IBinder;
 import android.support.v4.content.LocalBroadcastManager;
+import android.text.Layout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -49,33 +50,9 @@ public class EditTextService extends Service {
 
         // the floating view
         cardView = layoutInflater.inflate(R.layout.card, null);
-
-//        EditText replyBox = (EditText) cardView.findViewById(R.id.notification_reply_box);
-//        replyBox.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.d("EditText_Focus", "clicked");
-//                cardView.setLayoutParams(EditTextService.this.getParamsThatWorksForKeyboard());
-//            }
-//        });
-//        replyBox.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View view, boolean hasFocus) {
-//                InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-//
-//                if (hasFocus) {
-//                    Log.d("EditText_Focus", "has focus");
-//                    cardView.setLayoutParams(EditTextService.this.getParamsThatWorksForKeyboard());
-//                    imm.showSoftInput(view, InputMethodManager.SHOW_FORCED);
-//                } else {
-//                    Log.d("EditText_Focus", "no focus");
-//                    imm.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
-//                }
-//            }
-//        });
+        final EditText replyBox = (EditText) cardView.findViewById(R.id.notification_reply_box);
 
         WindowManager.LayoutParams params = this.getParamsThatWorksForKeyboard();
-//        WindowManager.LayoutParams params = this.getParamsThatWorksForTouchEvents();
 
         LocalBroadcastManager
                 .getInstance(this.getApplicationContext())
@@ -85,19 +62,17 @@ public class EditTextService extends Service {
                             public void onReceive(Context context, Intent intent) {
                                 Log.d("EditText_Focus", "received intent");
 
-                                cardView.clearFocus();
-//                                cardView.setLayoutParams(EditTextService.this.getParamsThatWorksForTouchEvents());
+                                replyBox.clearFocus();
 
-                                if(cardView.isAttachedToWindow()) {
+                                if (cardView.getVisibility() == View.VISIBLE) {
                                     cardView.setVisibility(View.GONE);
-//                                    windowManager.removeView(cardView);
                                 }
-//                                ((RelativeLayout) cardView).removeView(replyBox);
                                 EditTextService.this.onDestroy();
                             }
                         },
                         new IntentFilter("REMOVE_NOTIFICATION_VIEW")
                 );
+
         windowManager.addView(cardView, params);
     }
 

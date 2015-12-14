@@ -14,4 +14,34 @@
         android:width="50dp"
         android:textSize="16dp" />
 
+    <com.mohitmamoria.edittextkeyboardissue.ReplyLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/reply_layout"
+        android:layout_below="@+id/notification_text">
+
+        <LinearLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="0px"
+            android:layout_height="0px"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/notification_reply_box"
+            android:layout_weight="3"
+            android:hint="Reply..."
+            android:textColor="@android:color/black"
+            android:maxLines="4" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/notification_reply_send"
+            android:layout_weight="1"
+            android:text="Send"/>
+
+    </com.mohitmamoria.edittextkeyboardissue.ReplyLayout>
 </RelativeLayout>
