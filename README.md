@@ -8,4 +8,19 @@ I tried removing the `FLAG_NOT_FOCUSABLE` flag, and the keyboard shows up just f
 
 What can we do? Please help.
 
+### How to use this repo?
+
+Clone it.
+
+In file, `EditTextService.java`, there are two methods that return the LayoutParams for the floating view: `getParamsThatWorksForTouchEvents()` and `getParamsThatWorksForKeyboard()`.
+
+In `onCreate()` method, these methods are called using this section:
+
+```java
+WindowManager.LayoutParams params = this.getParamsThatWorksForKeyboard();
+// WindowManager.LayoutParams params = this.getParamsThatWorksForTouchEvents();
+```
+
+Comment out one of the line and the other one will give you the desired effect to reproduce the issue.
+
 ### Reward: A Big Hug. :)
