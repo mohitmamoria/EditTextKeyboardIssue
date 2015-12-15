@@ -1,3 +1,5 @@
+Update Dec 15, 2015: Fixed.
+
 ## HELP PLEASE!
 
 I am trying to create a floating view (using WindowManager) that uses EditText Component. But here's the issue.
